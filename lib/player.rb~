@@ -1,0 +1,54 @@
+require_relative "./actor"
+require "pp"
+
+class Player < Actor
+  attr_accessor :vel_y, :vel_x, :x, :y
+  def initialize
+    @sprite = Gosu::Image.new("assets/images/player.png")
+    @x = @y = @vel_x = @vel_y =  0.0
+    
+    @mass = 50
+  end
+
+  def warp(x,y)
+    @x,@y = x,y
+  end
+
+
+  def accelerate(angle)
+    case angle
+    when :right
+      @vel_x += Gosu::offset_x(90, 1.0)
+    when :left
+      @vel_x += Gosu::offset_x(-90, 1.0)
+    end
+    
+  end
+  
+  def move
+    @x += @vel_x
+
+    @y += @vel_y
+    
+    @x = @x % 800
+
+    
+    @vel_x *= 0.95
+      @vel_y *= 0.95
+    
+  end
+
+  def jump
+    pp @vel_y.abs
+    if @vel_y.abs < 5.0
+      @vel_y += Gosu::offset_y(1, 2.0)
+
+    end
+  end  
+
+
+  
+  def draw
+    @sprite.draw(@x,@y, 1 )
+  end
+end
