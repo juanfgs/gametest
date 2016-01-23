@@ -17,7 +17,7 @@ class Player < Actor
 
 
   def accelerate(angle)
-    acc =  @mid_air ? @acc : 0.05
+    acc =  @mid_air ? 0.2 : @acc
     
     case angle
     when :right
