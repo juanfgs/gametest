@@ -1,3 +1,3 @@
 class Actor
-  attr_accessor :sprite, :x, :y, :angle, :mass, :falling, :mid_air
+  attr_accessor :sprite, :x, :y, :angle, :mass, :falling, :mid_air, :height
 end

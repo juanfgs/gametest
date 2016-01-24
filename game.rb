@@ -1,14 +1,27 @@
 require "gosu"
 require_relative "./lib/player"
+require_relative "./lib/block"
+require_relative "./lib/world"
+
 class GameWindow < Gosu::Window
-  attr_accessor :gravity
+  
   def initialize
     super 800, 600
     self.caption =  "Game test"
-    @horizon = self.height - 140
+ 
+    @world = World.new()
+    @world.viewport_height = self.height
+    @world.viewport_width = self.width
+    
     @player = Player.new
-    @player.warp(200,self.height - 72)
-    @gravity = 0.0
+    @player.warp(200,@world.horizon - @player.height )
+    @world.add_actor(@player)    
+
+    @block = Block.new
+    @block.place(200,@world.horizon + @block.height)
+    @world.add_actor(@block)
+
+    @background_image = Gosu::Image.new("assets/images/bg.png", :tileable => true)
     
   end
 
@@ -16,8 +29,8 @@ class GameWindow < Gosu::Window
 
     if Gosu::button_down? Gosu::KbLeft #or Gosu::button_down? Gosu::GpLeft then
       @player.accelerate :left
-
-     end
+    end
+    
     if Gosu::button_down? Gosu::KbRight #or Gosu::button_down? Gosu::GpRight then
       @player.accelerate :right
     end
@@ -27,23 +40,13 @@ class GameWindow < Gosu::Window
         @player.jump
       end
     end
-
-    if @player.y >= @horizon
-      @gravity = 0
-      @player.y = @horizon
-      @player.falling = false
-      @player.mid_air = false
-    elsif @player.vel_y.abs > 0.0 && @player.vel_y.abs < 1.0
-      @gravity = Gosu::offset_y(1, 0.85)
-      @player.vel_y -= @gravity
-    end
-
+    @world.gravity
     @player.move
-    
   end
 
   def draw
-    @player.draw
+    @world.show
+    @background_image.draw(0, 0, 0)    
   end
 end
 

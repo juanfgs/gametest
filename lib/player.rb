@@ -2,11 +2,12 @@ require_relative "./actor"
 require "pp"
 
 class Player < Actor
-  attr_accessor :vel_y, :vel_x, :x, :y, :acc
+  attr_accessor :vel_y, :vel_x, :acc, :x,:y
   def initialize
     @sprite = Gosu::Image.new("assets/images/player.png")
-    @background_image = Gosu::Image.new("assets/images/bg.png", :tileable => true)
+    @height = 74
     @x = @y = @vel_x = @vel_y =  0.0
+
     @acc = 0.5
     @mass = 50
   end
@@ -30,10 +31,7 @@ class Player < Actor
   
   def move
     @x += @vel_x
-
     @y += @vel_y
-    
-    @x = @x % 800
 
     
     @vel_x *= 0.95
@@ -44,7 +42,7 @@ class Player < Actor
   def jump
     @mid_air = true
     if @vel_y.abs < 2.0
-      @vel_y += Gosu::offset_y(1, 2.5)
+      @vel_y += Gosu::offset_y(1, 3.5)
     else
       @falling = true
     end
@@ -52,6 +50,6 @@ class Player < Actor
   
   def draw
     @sprite.draw(@x,@y, 1 )
-    @background_image.draw(0, 0, 0)
+
   end
 end
