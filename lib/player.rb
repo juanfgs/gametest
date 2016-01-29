@@ -4,8 +4,9 @@ require "pp"
 class Player < Actor
   attr_accessor :vel_y, :vel_x, :acc, :x,:y
   def initialize
+    super 
     @sprite = Gosu::Image.new("assets/images/player.png")
-    @height = 74
+
     @x = @y = @vel_x = @vel_y =  0.0
 
     @acc = 0.5
@@ -32,7 +33,6 @@ class Player < Actor
   def move
     @x += @vel_x
     @y += @vel_y
-
     
     @vel_x *= 0.95
     @vel_y *= 0.95
@@ -41,7 +41,7 @@ class Player < Actor
 
   def jump
     @mid_air = true
-    if @vel_y.abs < 2.0
+    if @vel_y.abs < 6.0
       @vel_y += Gosu::offset_y(1, 3.5)
     else
       @falling = true
