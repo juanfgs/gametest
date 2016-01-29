@@ -30,7 +30,7 @@ class World
           actor.y = horizon
           actor.falling = false
           actor.mid_air = false
-        elsif actor.vel_y.abs > 0.0 && actor.vel_y.abs < 1.0
+        elsif actor.vel_y.abs > 0.0 
           @gravity_acceleration = Gosu::offset_y(1, @gravitational_force)
           actor.vel_y -= @gravity_acceleration
         end
