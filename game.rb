@@ -1,56 +1,56 @@
 require "gosu"
-require "pp"
 require_relative "./lib/player"
 require_relative "./lib/block"
 require_relative "./lib/world"
+require_relative "./lib/ground"
 
 class GameWindow < Gosu::Window
   
   def initialize
     super 800, 600
     self.caption =  "Game test"
- 
+
     @world = World.new()
-    @world.viewport_height = self.height
-    @world.viewport_width = self.width
+
     
     @player = Player.new
-    @player.warp(200,@world.horizon )
-    @world.add_actor(@player)    
+    @player.warp(200,200) #position the player
+    @world.add_actor(@player)
 
-    @block = Block.new
-    @block.place(300,@world.horizon + @block.height)
-    @world.add_actor(@block)
-
-    @background_image = Gosu::Image.new("assets/images/bg.png", :tileable => true)
     
+    @ground = Ground.new
+    @ground.warp(0,560) #position the ground
+    @world.add_actor(@ground,true)    
+
+    5.times {
+      block = Block.new
+      block.warp(200,180) #position a block
+      @world.add_actor(block)
+    }
+
+    
+    @block = Block.new
+    @block.warp(300,480) #position a block
+    @world.add_actor(@block)    
+    
+    @background_image = Gosu::Image.new("assets/images/bg.png", :tileable => true)
   end
 
   def update
-
-
-    
     if Gosu::button_down? Gosu::KbLeft #or Gosu::button_down? Gosu::GpLeft then
       @player.accelerate :left
     end
     
     if Gosu::button_down? Gosu::KbRight #or Gosu::button_down? Gosu::GpRight then
-
-        @player.accelerate :right
-
+      @player.accelerate :right
     end
 
     if Gosu::button_down? Gosu::KbUp #or Gosu::button_down? Gosu::GpRight then
-
-        if !@player.falling
-          @player.jump
-        end
-
+      @player.body.reset_forces
+      @player.jump
     end
     
-    @world.gravity
-#    @world.collision(@player)
-    @player.move    
+    @world.space.step 1
   end
 
   def draw
