@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="player_prototype.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.9790968"
+     inkscape:cx="18.587261"
+     inkscape:cy="975.26826"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1918"
+     inkscape:window-height="1054"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       inkscape:connector-curvature="0"
+       id="path4151"
+       d="m 62.378956,187.5508 c -11.04864,-0.94702 -19.887551,-0.31567 -18.624849,-5.68216 1.262702,-5.36648 0.631351,-11.3643 3.47243,-11.3643 2.841077,0 4.419455,5.68215 8.20756,4.10377 3.788105,-1.57837 2.841079,-3.15675 5.366482,-2.84108 2.525403,0.31568 3.472428,4.10378 7.891885,6.31351 4.41945,2.20973 13.258369,2.84108 10.732959,5.68216 -2.525399,2.84108 -17.046467,3.7881 -17.046467,3.7881 z"
+       style="fill:#171717;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.22364295px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/home/juanfgs/src/ruby/gametest/assets/images/player.png"
+       inkscape:export-xdpi="160"
+       inkscape:export-ydpi="160" />
+    <path
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.14508522px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 40.314828,190.69817 c -10.339317,-0.88622 -18.610771,-0.2954 -17.429135,-5.31735 1.181637,-5.02195 0.590818,-10.63473 3.249501,-10.63473 2.658679,0 4.135725,5.31737 7.680634,3.84032 3.544909,-1.47705 2.658682,-2.95409 5.021955,-2.65868 2.363272,0.29541 3.249499,3.84032 7.385226,5.90817 4.135726,2.06787 12.407181,2.65869 10.043908,5.31737 -2.363273,2.65868 -15.952089,3.5449 -15.952089,3.5449 z"
+       id="path4149"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/juanfgs/src/ruby/gametest/assets/images/player.png"
+       inkscape:export-xdpi="160"
+       inkscape:export-ydpi="160" />
+    <path
+       style="fill:#171717;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.14981389px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 27.371591,117.93269 c -5.120264,-8.59221 -7.680396,-10.65434 -5.888304,-20.621299 1.792092,-9.966949 0.512026,-18.559156 3.840198,-18.902844 3.328173,-0.343688 7.424385,-2.062129 7.936411,5.499013 0.512027,7.561139 0.76804,12.716461 0,16.15334 -0.76804,3.43688 8.192424,16.84073 7.16837,21.30867 -1.024052,4.46795 -12.544648,-2.06213 -13.056675,-3.43688 z"
+       id="path4155"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/juanfgs/src/ruby/gametest/assets/images/player.png"
+       inkscape:export-xdpi="160"
+       inkscape:export-ydpi="160" />
+    <path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:0.97902024px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="m 57.595278,36.999336 c -8.956328,-1.545556 -8.667414,-5.74064 -6.645017,-7.948579 2.022396,-2.207939 2.889138,-4.63667 4.911535,-2.649525 2.022396,1.987144 1.733482,10.598104 1.733482,10.598104 z"
+       id="path4165"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/juanfgs/src/ruby/gametest/assets/images/player.png"
+       inkscape:export-xdpi="160"
+       inkscape:export-ydpi="160" />
+    <ellipse
+       style="fill:#171717;fill-opacity:1;stroke:#000000;stroke-width:0.79367614;stroke-opacity:1"
+       id="path4167"
+       cx="55.834988"
+       cy="33.482609"
+       rx="0.71663392"
+       ry="1.9451492"
+       inkscape:export-filename="/home/juanfgs/src/ruby/gametest/assets/images/player.png"
+       inkscape:export-xdpi="160"
+       inkscape:export-ydpi="160" />
+    <path
+       style="fill:#483e37;fill-opacity:1;stroke:#000000;stroke-width:1.03322816;stroke-opacity:1"
+       d="m 44.678353,127.66866 c -1.375627,-1.83718 -2.366045,-4.37233 -2.200928,-5.63369 0.165117,-1.26134 -1.340163,-6.11765 -3.345064,-10.79178 -3.330815,-7.7653 -3.673022,-9.50318 -3.966906,-20.145751 -0.279645,-10.126894 -0.584829,-11.83753 -2.337873,-13.104315 -2.522413,-1.82275 -5.850757,-1.865679 -8.281666,-0.106818 -1.909034,1.381262 -3.83537,13.182912 -4.057546,24.858454 -0.108713,5.71298 4.01955,14.60859 8.340195,17.97153 1.72093,1.33947 2.379826,2.91404 2.379826,5.68708 0,3.78657 -0.04243,3.82586 -3.37576,3.12613 -1.856669,-0.38976 -4.894853,-0.97059 -6.751522,-1.29075 -3.304184,-0.56975 -3.375759,-0.69628 -3.375759,-5.96733 0,-2.96189 -0.976888,-10.87958 -2.170862,-17.5949 -3.72666,-20.959975 -1.323645,-32.619512 7.815035,-37.918903 5.330872,-3.091295 12.886618,-3.40383 18.245823,-0.754718 2.907067,1.436996 3.995813,2.871748 5.43416,7.16116 2.373445,7.078043 4.74687,25.414399 5.612729,43.362231 l 0.698691,14.48269 -3.080715,0 c -2.270162,0 -3.738782,-0.87886 -5.581858,-3.34032 z"
+       id="path4194"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/juanfgs/src/ruby/gametest/assets/images/player.png"
+       inkscape:export-xdpi="160"
+       inkscape:export-ydpi="160" />
+    <path
+       style="fill:#e9c6af;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       d="M 33.238076,58.615176 C 15.680549,56.316624 8.0057695,36.196743 20.104162,24.183855 c 2.830586,-2.810581 5.182607,-4.318729 8.57528,-5.498584 8.21365,-2.856425 17.112963,-0.981097 23.456303,4.942884 l 2.484517,2.320263 -0.955419,0.401724 c -0.941501,0.395871 -3.612948,3.277509 -4.347414,4.689468 -0.207122,0.398183 -0.376588,1.318936 -0.376588,2.046119 0,2.290311 2.223529,4.187293 6.131788,5.231281 2.871758,0.767113 2.812084,0.814825 2.856521,-2.283891 0.04941,-3.445384 0.526429,-1.970871 0.584469,1.80665 0.0526,3.423826 -0.424811,5.52101 -2.022062,8.882547 -1.713629,3.606466 -5.473773,7.477748 -9.108362,9.377578 -4.135648,2.161733 -9.525188,3.120102 -14.145119,2.515282 z"
+       id="path4196"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/juanfgs/src/ruby/gametest/assets/images/player.png"
+       inkscape:export-xdpi="160"
+       inkscape:export-ydpi="160" />
+    <path
+       style="fill:#2c5aa0;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       d="m 34.360181,159.6129 c -3.538289,-1.17297 -5.862422,-3.43794 -10.183883,-9.92464 -3.604661,-5.41076 -4.48499,-7.50463 -5.39629,-12.83517 -0.833145,-4.87337 -1.241015,-10.95255 -0.712943,-10.62618 0.210988,0.1304 0.383614,0.57923 0.383614,0.9974 0,0.70403 0.361859,0.84936 4.888857,1.96352 2.688872,0.66177 5.486529,1.29358 6.217017,1.40403 1.234476,0.18665 1.36306,0.30979 1.822964,1.7457 l 0.494804,1.54489 2.983032,0.26779 c 3.471801,0.31167 7.030403,0.12625 7.550056,-0.39341 0.262729,-0.26273 0.14696,-0.59249 -0.419801,-1.19578 l -0.782572,-0.83301 3.95229,-0.0358 c 2.173759,-0.0197 4.921775,-0.20612 6.106701,-0.41431 l 2.154412,-0.37854 -0.08227,-3.97737 C 53.125044,116.71512 51.823995,98.720044 50.597035,89.036476 49.025022,76.629629 46.983623,69.102891 44.584038,66.866255 43.605574,65.954234 40.720996,64.622675 38.337557,63.982796 l -1.822964,-0.489409 1.844952,-0.02181 c 8.137183,-0.09621 17.378118,5.454198 22.5791,13.561737 3.40114,5.301862 4.890667,10.292909 5.147838,17.249152 0.157796,4.26831 0.08066,5.320363 -0.68045,9.280547 -1.170879,6.09228 -1.422057,8.44968 -2.206343,20.70745 -1.334316,20.85436 -2.372282,25.12285 -7.047233,28.98081 -5.01907,4.14194 -10.695401,6.29642 -17.152005,6.51015 -2.096408,0.0694 -4.18453,0.003 -4.640271,-0.14852 z"
+       id="path4198"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/juanfgs/src/ruby/gametest/assets/images/player.png"
+       inkscape:export-xdpi="160"
+       inkscape:export-ydpi="160" />
+    <path
+       style="fill:#483e37;fill-opacity:1;stroke:#000000;stroke-width:1.26266944;stroke-opacity:1"
+       d="m 37.916016,126.91026 c -3.421523,-0.96445 -8.501445,-3.66372 -9.855694,-5.2369 -1.827612,-2.12307 -6.508041,-9.2848 -7.469767,-11.42981 -1.372917,-3.0621 -1.499911,-6.72522 -0.451573,-13.025702 0.503545,-3.026304 1.133724,-7.978434 1.400398,-11.004737 0.599675,-6.805334 1.150528,-9.351991 2.204901,-10.193521 0.449495,-0.358759 2.121869,-0.831414 3.716385,-1.050346 5.206488,-0.71487 7.06986,0.663231 7.864855,5.816643 0.744634,4.826923 1.041657,14.701234 0.537429,17.866298 -0.599597,3.763705 -0.298991,4.730745 4.231245,13.611945 3.958578,7.76047 5.072541,10.52503 5.072541,12.58876 0,2.83154 -2.244702,3.46846 -7.25072,2.05737 z"
+       id="path4200"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/juanfgs/src/ruby/gametest/assets/images/player.png"
+       inkscape:export-xdpi="160"
+       inkscape:export-ydpi="160" />
+    <path
+       style="fill:#464544;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.18111849px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 30.20552,124.80254 c 2.139053,10.4524 2.274337,14.75945 4.975605,14.28659 2.701269,-0.47287 12.763541,-1.30628 10.647453,-2.79188 -2.116089,-1.48561 -5.25278,-5.26726 -2.641493,-4.48702 2.61129,0.78024 5.52272,1.50794 5.312559,0.30738 -0.210162,-1.20056 -8.937214,-8.64368 -8.937214,-8.64368 z"
+       id="path4169"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/juanfgs/src/ruby/gametest/assets/images/player.png"
+       inkscape:export-xdpi="160"
+       inkscape:export-ydpi="160" />
+    <path
+       style="fill:#e9c6af;fill-opacity:1;stroke:#000000;stroke-width:0.16724934;stroke-opacity:1"
+       d="m 34.15409,138.19056 c -0.440803,-0.50274 -0.764141,-1.27193 -1.112269,-2.64598 -0.392219,-1.54808 -2.074009,-10.1227 -1.99676,-10.1805 0.02885,-0.0216 1.917777,-0.30142 4.19762,-0.62186 l 4.145169,-0.58263 2.46118,2.18287 c 3.029132,2.68659 5.14192,4.70304 5.596187,5.34099 l 0.343632,0.48259 -0.894068,-0.12297 c -0.491737,-0.0676 -1.537849,-0.30109 -2.324692,-0.5188 -1.759665,-0.48688 -2.373204,-0.50242 -2.764512,-0.07 -0.619169,0.68418 0.119466,2.08285 2.146326,4.06426 0.63736,0.62307 1.126095,1.1656 1.086077,1.20562 -0.21926,0.21925 -2.527867,0.6638 -6.119475,1.17837 -2.22954,0.31942 -4.155877,0.58077 -4.280749,0.58077 -0.124871,0 -0.342521,-0.13171 -0.483666,-0.29269 z"
+       id="path4202"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/juanfgs/src/ruby/gametest/assets/images/player.png"
+       inkscape:export-xdpi="160"
+       inkscape:export-ydpi="160" />
+  </g>
+</svg>
