@@ -1,6 +1,6 @@
 require "gosu"
 require_relative "./lib/player"
-require_relative "./lib/block"
+require_relative "./lib/crate"
 require_relative "./lib/world"
 require_relative "./lib/ground"
 
@@ -19,37 +19,37 @@ class GameWindow < Gosu::Window
 
     
     @ground = Ground.new
-    @ground.warp(200,558) #position the ground
+    @ground.warp(600,558) #position the ground
     @world.add_actor(@ground,true)    
 
 
     15.times {
-       block = Block.new
+       block = Crate.new
        block.warp(400,380) #position a block
        @world.add_actor(block)
     }
 
     8.times {
-       block = Block.new
+       block = Crate.new
        block.warp(400,280) #position a block
        @world.add_actor(block)
      }    
     
     6.times {
-       block = Block.new
+       block = Crate.new
        block.warp(400,180) #position a block
        @world.add_actor(block)
      }
 
 
     4.times {
-       block = Block.new
+       block = Crate.new
        block.warp(400,80) #position a block
        @world.add_actor(block)
     }
 
     2.times {
-       block = Block.new
+       block = Crate.new
        block.warp(400,40) #position a block
        @world.add_actor(block)
      }        
@@ -72,7 +72,7 @@ class GameWindow < Gosu::Window
       @player.body.reset_forces
       @player.jump
     end
-    pp @player.body.p.y
+
     @world.space.step 1
   end
 
