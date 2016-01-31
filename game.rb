@@ -19,19 +19,42 @@ class GameWindow < Gosu::Window
 
     
     @ground = Ground.new
-    @ground.warp(0,560) #position the ground
+    @ground.warp(200,558) #position the ground
     @world.add_actor(@ground,true)    
 
-    5.times {
-      block = Block.new
-      block.warp(200,180) #position a block
-      @world.add_actor(block)
+
+    15.times {
+       block = Block.new
+       block.warp(400,380) #position a block
+       @world.add_actor(block)
     }
 
+    8.times {
+       block = Block.new
+       block.warp(400,280) #position a block
+       @world.add_actor(block)
+     }    
     
-    @block = Block.new
-    @block.warp(300,480) #position a block
-    @world.add_actor(@block)    
+    6.times {
+       block = Block.new
+       block.warp(400,180) #position a block
+       @world.add_actor(block)
+     }
+
+
+    4.times {
+       block = Block.new
+       block.warp(400,80) #position a block
+       @world.add_actor(block)
+    }
+
+    2.times {
+       block = Block.new
+       block.warp(400,40) #position a block
+       @world.add_actor(block)
+     }        
+    
+
     
     @background_image = Gosu::Image.new("assets/images/bg.png", :tileable => true)
   end
@@ -49,7 +72,7 @@ class GameWindow < Gosu::Window
       @player.body.reset_forces
       @player.jump
     end
-    
+    pp @player.body.p.y
     @world.space.step 1
   end
 

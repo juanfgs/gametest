@@ -13,7 +13,7 @@ class World
     #    puts "player hit the ground"
     #  end
     
-
+    @space.damping = 0.9
     @space.gravity.y = 0.5
   end
 

@@ -6,12 +6,16 @@ class Ground < Actor
   
   def initialize
     @body = CP::Body.new_static()
-    @width = 800.0
-    @height = 600.0   
-    shape_array = [CP::Vec2.new(0.0,0.0), CP::Vec2.new(0.0, @height), CP::Vec2.new(@width, @height), CP::Vec2.new(@width, 0)]
-    @shape = CP::Shape::Poly.new(@body,shape_array,CP::Vec2.new(0,0) )
+    @sprite = Gosu::Image.new("assets/images/ground.png")    
+    @shape = CP::Shape::Poly.new(@body,vec_from_size,CP::Vec2.new(0,0) )
+    
     @shape.collision_type = :ground
-    @sprite = Gosu::Image.new("assets/images/ground.png")
+
   end
+
+   # def draw
+   #   puts "X:#{@body.p.x} Y:#{@body.p.y}\n"
+   #   @sprite.draw_rot(@body.p.x  ,@body.p.y   , 1, @body.a)
+   # end
   
 end
