@@ -8,11 +8,6 @@ class World
     @space = CP::Space.new()
     @actors = []
 
-    # @space.add_collision_func(:player,:ground) do |player,ground|
-
-    #    puts "player hit the ground"
-    #  end
-    
     @space.damping = 0.9
     @space.gravity.y = 0.5
   end
@@ -21,10 +16,10 @@ class World
     @viewport_height - 140    
   end
   
-  def add_actor(actor, static = false)
+  def add_actor(actor, rogue = false)
     @actors << actor
-    if static
-      @space.add_static_shape(actor.shape)
+    if rogue #adds static shape to have a rogue body
+      @space.add_static_shape(actor.shape) 
     else
       @space.add_body(actor.body)      
       @space.add_shape(actor.shape)

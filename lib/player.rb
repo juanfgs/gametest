@@ -8,7 +8,7 @@ class Player < Actor
     @sprite = Gosu::Image.new("assets/images/player.png")    
 
 #    moment = CP.moment_for_box(10, width, height)    
-    @body = CP::Body.new(10,CP::INFINITY)        
+    @body = CP::Body.new(10, CP::INFINITY)        
 
     @shape = CP::Shape::Poly.new(@body,vec_from_size,CP::Vec2.new(0,0) )
     @shape.collision_type = :player
@@ -30,11 +30,8 @@ class Player < Actor
   end
 
   def jump
-
-    if @body.v.y.abs < 3
-      @body.v.y = -3 * 0.85
-    else
-      @body.reset_forces
+    if !mid_air
+      @body.v.y = -16 * 0.95
     end
   end  
   

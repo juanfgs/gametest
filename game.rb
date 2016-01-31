@@ -1,13 +1,14 @@
 require "gosu"
 require_relative "./lib/player"
 require_relative "./lib/crate"
+require_relative "./lib/platform"
 require_relative "./lib/world"
 require_relative "./lib/ground"
 
 class GameWindow < Gosu::Window
   
   def initialize
-    super 800, 600
+    super 1024, 768
     self.caption =  "Game test"
 
     @world = World.new()
@@ -19,42 +20,24 @@ class GameWindow < Gosu::Window
 
     
     @ground = Ground.new
-    @ground.warp(600,558) #position the ground
+    @ground.warp(600,726) #position the ground
     @world.add_actor(@ground,true)    
 
+    @platform = Platform.new(256,64)
+    @platform.warp(600,564)
+    @world.add_actor(@platform,true)    
 
-    15.times {
-       block = Crate.new
-       block.warp(400,380) #position a block
-       @world.add_actor(block)
-    }
+    @platform = Platform.new(256,64)
+    @platform.warp(500,650)
+    @world.add_actor(@platform,true)    
 
-    8.times {
-       block = Crate.new
-       block.warp(400,280) #position a block
-       @world.add_actor(block)
-     }    
-    
-    6.times {
-       block = Crate.new
-       block.warp(400,180) #position a block
-       @world.add_actor(block)
-     }
+    @crate = Crate.new
+    @crate.warp(600,350)
+    @world.add_actor(@crate)
 
-
-    4.times {
-       block = Crate.new
-       block.warp(400,80) #position a block
-       @world.add_actor(block)
-    }
-
-    2.times {
-       block = Crate.new
-       block.warp(400,40) #position a block
-       @world.add_actor(block)
-     }        
-    
-
+    @crate = Crate.new 2
+    @crate.warp(600,350)
+    @world.add_actor(@crate)        
     
     @background_image = Gosu::Image.new("assets/images/bg.png", :tileable => true)
   end
@@ -69,8 +52,10 @@ class GameWindow < Gosu::Window
     end
 
     if Gosu::button_down? Gosu::KbUp #or Gosu::button_down? Gosu::GpRight then
-      @player.body.reset_forces
-      @player.jump
+
+      @player.jump        
+    
+
     end
 
     @world.space.step 1
@@ -78,7 +63,15 @@ class GameWindow < Gosu::Window
 
   def draw
     @world.show
-    @background_image.draw(0, 0, 0)    
+    tiles_x = 1024 / @background_image.width
+    tiles_y = 768 / @background_image.height
+    tiles_x.times { |i|
+      tiles_y.times {|j|
+              @background_image.draw(i * @background_image.width, j * @background_image.height, 0)
+      }
+
+    }
+
   end
 end
 

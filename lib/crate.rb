@@ -2,8 +2,9 @@ require_relative "./actor"
 
 class Crate < Actor
 
-  def initialize
-    @sprite = Gosu::Image.new("assets/images/crate.png")
+  def initialize(tileset = nil)
+    
+    @sprite = Gosu::Image.new("assets/images/crate#{tileset}.png")
 
 #    moment = CP.moment_for_box(300, width, height)    
     @body = CP::Body.new(300,CP::INFINITY)
