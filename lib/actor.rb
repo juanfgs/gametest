@@ -1,5 +1,4 @@
 require 'chipmunk'
-require 'pp'
 
 class Actor
   attr_accessor :sprite, :angle, :mass, :falling, :mid_air, :height
@@ -16,7 +15,6 @@ class Actor
   end
 
   def width
-
     @width ? @width : @sprite.width 
   end
 
@@ -24,25 +22,6 @@ class Actor
     @height ? @height: @sprite.height
   end  
   
-  def pos_y
-    @body.p.y
-  end
-
-  def pos_x
-    @body.p.x
-  end
-
-
-  def vel_x
-    @body.v.x
-  end  
-
-
-  def vel_y
-    @body.v.y
-  end
-
-
   def draw
     @sprite.draw_rot(@body.p.x , @body.p.y  , 1, @shape.body.a)
   end
