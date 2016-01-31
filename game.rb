@@ -15,7 +15,7 @@ class GameWindow < Gosu::Window
 
     
     @player = Player.new
-    @player.warp(200,200) #position the player
+    @player.warp(200,128) #position the player
     @world.add_actor(@player)
 
     
@@ -24,16 +24,36 @@ class GameWindow < Gosu::Window
     @world.add_actor(@ground,true)    
 
     @platform = Platform.new(256,64)
-    @platform.warp(600,564)
+    @platform.warp(256,128)
+    @world.add_actor(@platform,true)
+
+    @platform = Platform.new(256,64)
+    @platform.warp(640,128)
+    @world.add_actor(@platform,true)        
+
+    @platform = Platform.new(256,64)
+    @platform.warp(512,256)
     @world.add_actor(@platform,true)    
 
     @platform = Platform.new(256,64)
-    @platform.warp(500,650)
+    @platform.warp(256,512)
     @world.add_actor(@platform,true)    
 
+    @platform = Platform.new(256,64)
+    @platform.warp(512,640)
+    @world.add_actor(@platform,true)    
+
+    
     @crate = Crate.new
-    @crate.warp(600,350)
+    @crate.warp(640,128)
     @world.add_actor(@crate)
+
+
+    @crate = Crate.new 3
+    @crate.warp(256,128)
+    @world.add_actor(@crate)
+
+    
 
     @crate = Crate.new 2
     @crate.warp(600,350)
