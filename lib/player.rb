@@ -1,55 +1,41 @@
 require_relative "./actor"
-require "pp"
+require 'chipmunk'
+require 'pp'
 
 class Player < Actor
-  attr_accessor :vel_y, :vel_x, :acc, :x,:y
+  attr_accessor :acc
   def initialize
-    super 
-    @sprite = Gosu::Image.new("assets/images/player.png")
+    @sprite = Gosu::Image.new("assets/images/player.png")    
 
-    @x = @y = @vel_x = @vel_y =  0.0
 
-    @acc = 0.5
-    @mass = 50
-  end
+#    moment = CP.moment_for_box(10, width, height)    
+    @body = CP::Body.new(10, CP::INFINITY)        
 
-  def warp(x,y)
-    @x,@y = x,y
+    @shape = CP::Shape::Poly.new(@body,vec_from_size,CP::Vec2.new(0,0) )
+    @shape.collision_type = :player
+    @shape.e = 0.0
+    @shape.u = 1
+    @shape.surface_v  = CP::Vec2.new(1.0,1.0)
+
+    @body.w_limit = 0.5
+
   end
 
 
   def accelerate(angle)
-    acc =  @mid_air ? 0.2 : @acc
-    
-    case angle
-    when :right
-      @vel_x += Gosu::offset_x(90, acc)
-    when :left
-      @vel_x += Gosu::offset_x(-90, acc)
-    end
-    
-  end
-  
-  def move
-    @x += @vel_x
-    @y += @vel_y
-    
-    @vel_x *= 0.95
-    @vel_y *= 0.95
-    
+     case angle
+     when :right
+       @body.v.x = 3 * 0.85
+     when :left
+       @body.v.x = -3 * 0.85
+     end
   end
 
   def jump
-    @mid_air = true
-    if @vel_y.abs < 6.0
-      @vel_y += Gosu::offset_y(1, 3.5)
-    else
-      @falling = true
+    if !mid_air
+      @body.v.y = -16 * 0.95
     end
   end  
   
-  def draw
-    @sprite.draw(@x,@y, 1 )
 
-  end
 end
