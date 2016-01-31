@@ -12,7 +12,7 @@ class World
     @space.gravity.y = 0.5
   end
 
-  def horizon
+
     @viewport_height - 140    
   end
   
@@ -34,15 +34,4 @@ class World
 
   end
 
-  def from_file(file)
-    @file = File.open(file)
-    world_data_str = file.read
-    @world_data =JSON.parse(world_data_str)
-
-    @world_data.each { |actor| add_actor(actor)}
-
-
-  end
-
-  
 end
