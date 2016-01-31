@@ -2,8 +2,8 @@ require "chipmunk"
 require 'pp'
 
 class World
-  attr_reader :actors,:gravity,:friction, :horizon, :space
-  attr_accessor :viewport_height, :viewport_width
+  attr_reader :actors, :space
+
   def initialize
     @space = CP::Space.new()
     @actors = []
