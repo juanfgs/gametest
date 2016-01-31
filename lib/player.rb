@@ -7,8 +7,8 @@ class Player < Actor
   def initialize
     @sprite = Gosu::Image.new("assets/images/player.png")    
 
-    moment = CP.moment_for_box(100, width, height)    
-    @body = CP::Body.new(100,moment)        
+#    moment = CP.moment_for_box(10, width, height)    
+    @body = CP::Body.new(10,CP::INFINITY)        
 
     @shape = CP::Shape::Poly.new(@body,vec_from_size,CP::Vec2.new(0,0) )
     @shape.collision_type = :player
