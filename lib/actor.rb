@@ -1,7 +1,7 @@
 require 'chipmunk'
 
 class Actor
-  attr_accessor :sprite, :angle, :mass, :falling, :mid_air, :height
+  attr_accessor :sprite, :angle, :mass, :grounded, :layer
   attr_reader :shape, :body
 
   def vec_from_size
@@ -23,17 +23,20 @@ class Actor
   end  
   
   def draw
-    @sprite.draw_rot(@body.p.x , @body.p.y  , 1, @shape.body.a)
+    @sprite.draw_rot(@body.p.x , @body.p.y  , @layer, @shape.body.a)
   end
   
   def mid_air
-    @body.v.y.abs > 0
+    @body.v.y.abs > 0 
   end
   
   def warp(x,y)
     @body.p.x = x
     @body.p.y = y
   end
+
+
+   
   
 end
 
