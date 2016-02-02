@@ -15,31 +15,31 @@ class GameWindow < Gosu::Window
 
     
     @player = Player.new
-    @player.warp(200,128) #position the player
+    @player.warp(200,120) #position the player
     @world.add_actor(@player)
 
     
-    @ground = Ground.new
-    @ground.warp(600,726) #position the ground
+    @ground = Platform.new(1400)
+    @ground.warp(400,726) #position the ground
     @world.add_actor(@ground,true)    
 
-    @platform = Platform.new(256,64)
+    @platform = Platform.new(256)
     @platform.warp(256,128)
     @world.add_actor(@platform,true)
 
-    @platform = Platform.new(256,64)
+    @platform = Platform.new(256)
     @platform.warp(640,128)
     @world.add_actor(@platform,true)        
 
-    @platform = Platform.new(256,64)
+    @platform = Platform.new(256)
     @platform.warp(512,256)
     @world.add_actor(@platform,true)    
 
-    @platform = Platform.new(256,64)
+    @platform = Platform.new(256)
     @platform.warp(256,512)
     @world.add_actor(@platform,true)    
 
-    @platform = Platform.new(256,64)
+    @platform = Platform.new(256)
     @platform.warp(512,640)
     @world.add_actor(@platform,true)    
 
