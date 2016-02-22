@@ -3,10 +3,16 @@ require 'chipmunk'
 require 'pp'
 
 class Player < Actor
+  SPRITE_RIGHT = 0
+  SPRITE_LEFT = 1
+  
   attr_accessor :acc
   def initialize
-    @sprite = Gosu::Image.new("assets/images/player.png")    
-
+    @sprites = Gosu::Image.load_tiles("assets/images/player.png", 32,72)
+    @sprite = @sprites[SPRITE_RIGHT]
+    pp @sprites
+    @direction = :right
+    
     @body = CP::Body.new(10, CP::INFINITY)        
     @layer = 2
     @shape = CP::Shape::Poly.new(@body,vec_from_size,CP::Vec2.new(0,0) )
@@ -21,6 +27,7 @@ class Player < Actor
 
 
   def accelerate(angle)
+    @direction = angle
      case angle
      when :right
        @body.v.x = 3 * 0.85
@@ -30,12 +37,21 @@ class Player < Actor
   end
 
   def jump
-    
     if @grounded
       @body.v.y = -20 * 0.95
       @grounded = false
     end
   end  
-  
+
+
+  def draw
+    if @direction == :left
+      @sprite = @sprites[SPRITE_LEFT]
+    else
+      @sprite = @sprites[SPRITE_RIGHT]
+    end
+    
+    super
+  end
 
 end
