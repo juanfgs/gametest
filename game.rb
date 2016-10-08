@@ -58,6 +58,7 @@ class GameWindow < Gosu::Window
   end
 
   def update
+    #player 1
     if Gosu::button_down? Gosu::KbLeft
       @player.accelerate :left
     end
@@ -98,7 +99,7 @@ class GameWindow < Gosu::Window
 
   def draw
     @world.show
-    tiles_x = 1024 / @background_image.width
+    tiles_x = 2000 / @background_image.width
     tiles_y = 768 / @background_image.height
     tiles_x.times { |i|
       tiles_y.times {|j|
