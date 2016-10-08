@@ -1,6 +1,7 @@
 require "gosu"
 require_relative "./lib/player"
 require_relative "./lib/crate"
+require_relative "./lib/doodad"
 require_relative "./lib/platform"
 require_relative "./lib/world"
 require_relative "./lib/ground"
@@ -18,66 +19,80 @@ class GameWindow < Gosu::Window
     @player.warp(200,120) #position the player
     @world.add_actor(@player)
 
-    
+        
+    @player2 = Player.new
+    @player2.warp(600,120) #position the player
+    @world.add_actor(@player2)
+
     @ground = Platform.new(1400)
     @ground.warp(400,726) #position the ground
-    @world.add_actor(@ground,true)    
+    @world.add_actor(@ground, :rogue => true)    
 
     @platform = Platform.new(256)
-    @platform.warp(256,128)
-    @world.add_actor(@platform,true)
+    @platform.warp(256,662)
+    @world.add_actor(@platform, :rogue => true)
 
-    @platform = Platform.new(256)
-    @platform.warp(640,128)
-    @world.add_actor(@platform,true)        
-
-    @platform = Platform.new(256)
-    @platform.warp(512,256)
-    @world.add_actor(@platform,true)    
-
-    @platform = Platform.new(256)
-    @platform.warp(256,512)
-    @world.add_actor(@platform,true)    
-
-    @platform = Platform.new(256)
-    @platform.warp(512,640)
-    @world.add_actor(@platform,true)    
 
     
     @crate = Crate.new
     @crate.warp(640,128)
-    @world.add_actor(@crate)
+    @world.add_actor(@crate )
 
 
-    @crate = Crate.new 3
-    @crate.warp(256,128)
-    @world.add_actor(@crate)
+    @bush = BgDoodad.new( :tileset => 3, :layer => 1)
+    @bush.warp(246,631)
+    @world.add_actor(@bush, :without_physics => true)
+
+    @bush2 = BgDoodad.new( :tileset => 3, :layer => 30)
+    @bush2.warp(200,631)
+    @world.add_actor(@bush2, :without_physics => true)
+    
+    @bush2 = BgDoodad.new( :tileset => 3, :layer => 30)
+    @bush2.warp(280,631)
+    @world.add_actor(@bush2, :without_physics => true)
 
     
 
-    @crate = Crate.new 2
-    @crate.warp(600,350)
-    @world.add_actor(@crate)        
     
-    @background_image = Gosu::Image.new("assets/images/bg.png", :tileable => true)
+    @background_image = Gosu::Image.new("assets/images/bg.png", :tileable => false)
   end
 
   def update
-    if Gosu::button_down? Gosu::KbLeft #or Gosu::button_down? Gosu::GpLeft then
+    if Gosu::button_down? Gosu::KbLeft
       @player.accelerate :left
     end
     
-    if Gosu::button_down? Gosu::KbRight #or Gosu::button_down? Gosu::GpRight then
+    if Gosu::button_down? Gosu::KbRight 
       @player.accelerate :right
     end
 
-    if Gosu::button_down? Gosu::KbUp #or Gosu::button_down? Gosu::GpRight then
-
+    if Gosu::button_down? Gosu::KbUp 
       @player.jump        
-    
-
     end
 
+    if Gosu::button_down? Gosu::KbZ
+      @player.attack
+    end
+    
+    #Player 2
+    
+    if Gosu::button_down? Gosu::GpLeft 
+      @player2.accelerate :left
+    end
+    
+    if Gosu::button_down? Gosu::GpRight 
+      @player2.accelerate :right
+    end
+
+    if Gosu::button_down? Gosu::GpUp
+      @player2.jump        
+    end
+
+    if Gosu::button_down? Gosu::GpButton0
+      @player2.attack
+    end
+
+    
     @world.space.step 1
   end
 

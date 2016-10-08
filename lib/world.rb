@@ -11,7 +11,7 @@ class World
     handle_collisions
     
     @space.damping = 0.9
-    @space.gravity.y = 0.5
+    @space.gravity.y = 0.9
   end
 
 
@@ -32,13 +32,16 @@ class World
     puts "fX:#{shape.body.f.x} fY:#{shape.body.f.y}"        
   end  
   
-  def add_actor(actor, rogue = false)
+  def add_actor(actor, options = {})
+    
     @actors << actor
-    if rogue #adds static shape to have a rogue body
-      @space.add_static_shape(actor.shape) 
-    else
-      @space.add_body(actor.body)      
-      @space.add_shape(actor.shape)
+    unless options[:without_physics]
+      if options[:rogue] #adds static shape to have a rogue body
+        @space.add_static_shape(actor.shape) 
+      else
+        @space.add_body(actor.body)      
+        @space.add_shape(actor.shape)
+      end
     end
   end
 
