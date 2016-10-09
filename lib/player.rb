@@ -6,7 +6,7 @@ require 'pp'
 # Inherits: Actor
 # Represents the player actor
 class Player < Actor
-  attr_accessor :acc
+  attr_accessor :acc, :projectile_type, :direction, :cooldown
   
   def initialize
     @sprite_right = Gosu::Image.new("assets/images/player/player-idle.png") #define idle animation facing left
@@ -57,8 +57,9 @@ class Player < Actor
       Gosu::Image.new("assets/images/player/attack-left5.png")
                            ]
 
-
-    
+    @cooldown = 0
+    @cooldown_time = 20
+    @projectile_type = "spear"
     @running = false #sets running status as false
     @sprite = @sprite_right #sets default sprite
     @direction = :right 
@@ -122,6 +123,7 @@ class Player < Actor
     end
   end
 
+  
   # draw
   # overrides default draw method determines changes the sprite if the animation is idle to face
   # current player direction
@@ -139,4 +141,20 @@ class Player < Actor
     super
   end
 
+  def ability_cooldown
+    if @cooldown <= @cooldown_time && @cooldown > 0
+      @cooldown += 1
+    elsif @cooldown >= @cooldown_time
+      @cooldown = 0
+    end
+  end
+
+  def cooldown?
+    @cooldown != 0
+  end
+
+  def use_ability
+    @cooldown += 1
+  end
+  
 end

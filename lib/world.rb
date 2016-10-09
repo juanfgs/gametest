@@ -7,7 +7,7 @@ class World
   def initialize
     @space = CP::Space.new()
     @actors = []
-
+    @decal_expiry = 5
     handle_collisions
     
     @space.damping = 0.9
@@ -22,6 +22,18 @@ class World
       end
       true
     end
+
+
+    @space.add_collision_func(:projectile, :solid) do |projectile, solid|
+      projectile.body.i = CP::INFINITY
+      projectile.body.activate
+      remove = Proc.new { |space, projectile|
+        space.remove_body(projectile.body)
+        space.remove_shape(projectile.body.object.shape)
+        projectile = nil
+      }
+      @space.add_post_step_callback( projectile, &remove)
+    end 
   end
 
 
@@ -43,14 +55,27 @@ class World
         @space.add_shape(actor.shape)
       end
     end
+    @actors.length - 1
   end
 
+  def cleanup_projectiles
+
+    current = Time.now
+    @actors.each do |actor|
+                 
+      if actor.is_a? Projectile
+        puts (current - actor.created) 
+        if (current - actor.created) > @decal_expiry
+          @actors.delete_at(actor.actor_id)
+        end 
+      end
+    end
+
+  end
+  
   def show
-    @actors.each { |actor|
-      actor.draw
-    }
-
-
+    
+    @actors.each { |actor| actor.draw }
   end
 
 end

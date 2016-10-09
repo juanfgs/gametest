@@ -1,5 +1,6 @@
 require "gosu"
 require_relative "./lib/player"
+require_relative "./lib/projectile"
 require_relative "./lib/crate"
 require_relative "./lib/doodad"
 require_relative "./lib/platform"
@@ -75,6 +76,10 @@ class GameWindow < Gosu::Window
       @player.attack
     end
     
+    if Gosu::button_down? Gosu::KbX
+      launch_projectile(@player)
+    end
+   
     #Player 2
     
     if Gosu::button_down? Gosu::GpLeft 
@@ -93,12 +98,27 @@ class GameWindow < Gosu::Window
       @player2.attack
     end
 
-    
+    if Gosu::button_down? Gosu::GpButton1
+       launch_projectile(@player2) 
+    end
+
+    @player.ability_cooldown
+    @player2.ability_cooldown
     @world.space.step 1
   end
 
+  def launch_projectile(player)
+    unless player.cooldown?
+      projectile = Projectile.new( player.projectile_type )
+      projectile.warp(player.body.p.x,player.body.p.y)
+      projectile.actor_id = @world.add_actor(projectile)
+      projectile.launch(player.direction)
+      player.use_ability
+    end
+  end
+
   def draw
-    @world.show
+
     tiles_x = 2000 / @background_image.width
     tiles_y = 768 / @background_image.height
     tiles_x.times { |i|
@@ -108,6 +128,7 @@ class GameWindow < Gosu::Window
 
     }
 
+    @world.show
   end
 end
 
