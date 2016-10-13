@@ -22,6 +22,29 @@ class World
       end
       true
     end
+    
+    @space.add_collision_func(:player, :player) do |player,solid|
+      if player.body.p.y < solid.body.p.y
+        player.object.grounded = true
+      end
+      true
+    end
+
+    @space.add_collision_func(:projectile, :player) do |projectile, player|
+      if projectile.body.object.launcher != player.body.object #check if the collision is not caused by the launcher
+        player.object.take_damage!(projectile.body.object.damage)
+
+        projectile.body.i = CP::INFINITY
+        projectile.body.activate
+        remove = Proc.new { |space, projectile|
+          space.remove_body(projectile.body)
+          space.remove_shape(projectile.body.object.shape)
+          projectile = nil
+        }
+        @space.add_post_step_callback( projectile, &remove)
+        projectile.body.object.delete!
+      end
+    end
 
 
     @space.add_collision_func(:projectile, :solid) do |projectile, solid|
@@ -61,13 +84,12 @@ class World
   def cleanup_projectiles
 
     current = Time.now
-    @actors.each do |actor|
+    @actors.each_with_index do |actor,idx|
                  
       if actor.is_a? Projectile
-        puts (current - actor.created) 
-        if (current - actor.created) > @decal_expiry
-          @actors.delete_at(actor.actor_id)
-        end 
+        if actor.deleted
+          @actors.delete_at idx
+        end
       end
     end
 

@@ -16,15 +16,15 @@ class GameWindow < Gosu::Window
     @world = World.new()
 
     
-    @player = Player.new
+    @player = Player.new :hit_points => 6
     @player.warp(200,120) #position the player
     @world.add_actor(@player)
 
         
-    @player2 = Player.new
+    @player2 = Player.new :hit_points => 6
     @player2.warp(600,120) #position the player
     @world.add_actor(@player2)
-
+    puts @player.hit_points
     @ground = Platform.new(1400)
     @ground.warp(400,726) #position the ground
     @world.add_actor(@ground, :rogue => true)    
@@ -102,14 +102,17 @@ class GameWindow < Gosu::Window
        launch_projectile(@player2) 
     end
 
+    @player.damage_cooldown
+    @player2.damage_cooldown
     @player.ability_cooldown
     @player2.ability_cooldown
     @world.space.step 1
   end
 
+  
   def launch_projectile(player)
     unless player.cooldown?
-      projectile = Projectile.new( player.projectile_type )
+      projectile = Projectile.new( player )
       projectile.warp(player.body.p.x,player.body.p.y)
       projectile.actor_id = @world.add_actor(projectile)
       projectile.launch(player.direction)
@@ -118,6 +121,7 @@ class GameWindow < Gosu::Window
   end
 
   def draw
+    draw_hud
 
     tiles_x = 2000 / @background_image.width
     tiles_y = 768 / @background_image.height
@@ -130,6 +134,19 @@ class GameWindow < Gosu::Window
 
     @world.show
   end
+
+  def draw_hud
+    unless @player.dead
+      @player1_hud = Gosu::Image.new("assets/images/HUD/#{@player.hit_points.ceil}.png")
+      @player1_hud.draw(20 , 20  , 10)
+    end
+
+    unless @player2.dead
+      @player2_hud = Gosu::Image.new("assets/images/HUD/#{@player2.hit_points.ceil}.png")
+      @player2_hud.draw(960 , 20  , 10)
+    end
+  end
+  
 end
 
 

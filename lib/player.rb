@@ -6,9 +6,14 @@ require 'pp'
 # Inherits: Actor
 # Represents the player actor
 class Player < Actor
-  attr_accessor :acc, :projectile_type, :direction, :cooldown
+  attr_accessor :acc, :projectile_type, :projectile_damage, :direction, :cooldown, :hit_points, :dead
   
-  def initialize
+  def initialize(options = {})
+    if options[:hit_points]
+      @hit_points = options[:hit_points]
+    end
+    @dead = false
+    @taking_damage = false
     @sprite_right = Gosu::Image.new("assets/images/player/player-idle.png") #define idle animation facing left
     @sprite_left = Gosu::Image.new("assets/images/player/player-idle-left.png") #define idle animation facing right
     
@@ -39,7 +44,6 @@ class Player < Actor
       Gosu::Image.new("assets/images/player/player-running-left10.png"),
       Gosu::Image.new("assets/images/player/player-running-left11.png"),
       Gosu::Image.new("assets/images/player/player-running-left12.png")
-
                                 ]
 
     @sprite_anim_attack = [ #defines attack animation facing right
@@ -48,18 +52,26 @@ class Player < Actor
       Gosu::Image.new("assets/images/player/attack3.png"),
       Gosu::Image.new("assets/images/player/attack4.png"),
       Gosu::Image.new("assets/images/player/attack5.png")
-                           ]
+    ]
+    
     @sprite_anim_attack_left = [ #defines attack animation facing left
       Gosu::Image.new("assets/images/player/attack-left1.png"),
       Gosu::Image.new("assets/images/player/attack-left2.png"),
       Gosu::Image.new("assets/images/player/attack-left3.png"),
       Gosu::Image.new("assets/images/player/attack-left4.png"),
       Gosu::Image.new("assets/images/player/attack-left5.png")
-                           ]
+    ]
 
+    @sprite_damage_left = Gosu::Image.new("assets/images/player/damage-left1.png")
+    @sprite_damage = Gosu::Image.new("assets/images/player/damage1.png")
+
+    
+    @dmg_cooldown = 0
+    @dmg_cooldown_time = 50
     @cooldown = 0
     @cooldown_time = 20
     @projectile_type = "spear"
+    @projectile_damage = 1
     @running = false #sets running status as false
     @sprite = @sprite_right #sets default sprite
     @direction = :right 
@@ -72,6 +84,7 @@ class Player < Actor
     @shape.u = 1
     @shape.surface_v  = CP::Vec2.new(1.0,1.0)
     @shape.object = self
+    @body.object = self
     @body.w_limit = 0.5
 
   end
@@ -132,11 +145,19 @@ class Player < Actor
 
     unless @running or @attacking #set idle sprite unless they're running or attacking
       if @direction == :left
-        @sprite = @sprite_left 
+          @sprite = @sprite_left
       else
-        @sprite = @sprite_right
+          @sprite = @sprite_right
       end
-
+    end
+    
+    if @dmg_cooldown > 0 && @direction == :right 
+      @sprite = @sprite_damage
+    elsif @dmg_cooldown > 0 && @direction == :left
+      @sprite = @sprite_damage_left
+    end
+    if @dead
+      @sprite = Gosu::Image.new("assets/images/player/death.png")
     end
     super
   end
@@ -149,6 +170,15 @@ class Player < Actor
     end
   end
 
+  def damage_cooldown
+    if @dmg_cooldown <= @dmg_cooldown_time && @dmg_cooldown > 0
+      @dmg_cooldown += 1
+    elsif @dmg_cooldown >= @dmg_cooldown_time
+      @dmg_cooldown = 0
+    end
+  end
+
+  
   def cooldown?
     @cooldown != 0
   end
@@ -156,5 +186,17 @@ class Player < Actor
   def use_ability
     @cooldown += 1
   end
-  
+
+  def take_damage!(damage)
+    if @dmg_cooldown == 0
+      @hit_points -= damage
+      @taking_damage = 1
+      if @hit_points < 1
+        @dead = true
+        @body.m = 100000
+        @body.activate
+      end
+      @dmg_cooldown = 1
+    end
+  end
 end
