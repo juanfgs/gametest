@@ -80,6 +80,16 @@ class World
     end
     @actors.length - 1
   end
+  
+  def launch_projectile(actor)
+    unless actor.cooldown?
+      projectile = Projectile.new( actor )
+      projectile.warp(actor.body.p.x,actor.body.p.y)
+      projectile.actor_id = self.add_actor(projectile)
+      projectile.launch(actor.direction)
+      actor.use_ability
+    end
+  end
 
   def cleanup_projectiles
 
@@ -90,6 +100,12 @@ class World
         if actor.deleted
           @actors.delete_at idx
         end
+      elsif actor.kind_of? Enemy
+        
+        if actor.dead
+          @actors.delete_at idx
+        end
+
       end
     end
 

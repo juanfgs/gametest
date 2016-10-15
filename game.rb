@@ -1,11 +1,14 @@
 require "gosu"
 require_relative "./lib/player"
+require_relative "./lib/enemy"
 require_relative "./lib/projectile"
 require_relative "./lib/crate"
 require_relative "./lib/doodad"
 require_relative "./lib/platform"
+require_relative "./lib/floating_platform"
 require_relative "./lib/world"
 require_relative "./lib/ground"
+require_relative "./lib/puppeteer"
 
 class GameWindow < Gosu::Window
   
@@ -24,7 +27,12 @@ class GameWindow < Gosu::Window
     @player2 = Player.new :hit_points => 6
     @player2.warp(600,120) #position the player
     @world.add_actor(@player2)
-    puts @player.hit_points
+
+    @enemy = Puppeteer.spawn(:skeleton_archer, @world,:hit_points => 1 )
+    @enemy.warp(300,520) #position the player
+    @world.add_actor(@enemy)
+
+    
     @ground = Platform.new(1400)
     @ground.warp(400,726) #position the ground
     @world.add_actor(@ground, :rogue => true)    
@@ -33,7 +41,40 @@ class GameWindow < Gosu::Window
     @platform.warp(256,662)
     @world.add_actor(@platform, :rogue => true)
 
+    @platform = Platform.new(128)
+    @platform.warp(296,598)
+    @world.add_actor(@platform, :rogue => true)
 
+    @platform = Platform.new(256)
+    @platform.warp(626,662)
+    @world.add_actor(@platform, :rogue => true)
+
+    @platform = Platform.new(128)
+    @platform.warp(566,598)
+    @world.add_actor(@platform, :rogue => true)
+
+
+
+    @platform = FloatingPlatform.new(176)
+    @platform.warp(356,462)
+    @world.add_actor(@platform, :rogue => true)
+
+    @platform = FloatingPlatform.new(176)
+    @platform.warp(756,562)
+    @world.add_actor(@platform, :rogue => true)
+
+
+    
+    @platform = FloatingPlatform.new(176)
+    @platform.warp(656,362)
+    @world.add_actor(@platform, :rogue => true)
+
+    @platform = FloatingPlatform.new(176)
+    @platform.warp(156,362)
+    @world.add_actor(@platform, :rogue => true)
+
+
+    
     
     @crate = Crate.new
     @crate.warp(640,128)
@@ -77,7 +118,7 @@ class GameWindow < Gosu::Window
     end
     
     if Gosu::button_down? Gosu::KbX
-      launch_projectile(@player)
+      @world.launch_projectile(@player)
     end
    
     #Player 2
@@ -99,26 +140,26 @@ class GameWindow < Gosu::Window
     end
 
     if Gosu::button_down? Gosu::GpButton1
-       launch_projectile(@player2) 
+       @world.launch_projectile(@player2) 
     end
 
-    @player.damage_cooldown
-    @player2.damage_cooldown
-    @player.ability_cooldown
-    @player2.ability_cooldown
+    @world.actors.each_with_index  do |act,idx|
+      if act.kind_of? Player
+        act.ability_cooldown
+        act.damage_cooldown
+      end
+      if act.kind_of? Enemy
+        if act.dead 
+          @world.remove_actor idx
+        end
+      end
+        
+    end
+    
+    @world.actors.each { |act| if act.is_a? Enemy then act.ai_process_step end }
     @world.space.step 1
   end
-
   
-  def launch_projectile(player)
-    unless player.cooldown?
-      projectile = Projectile.new( player )
-      projectile.warp(player.body.p.x,player.body.p.y)
-      projectile.actor_id = @world.add_actor(projectile)
-      projectile.launch(player.direction)
-      player.use_ability
-    end
-  end
 
   def draw
     draw_hud

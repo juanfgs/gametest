@@ -5,7 +5,7 @@ require 'chipmunk'
 # This class contains a handful of methods useful to render and calculate shapes for game actors
 
 class Actor
-  attr_accessor :sprite, :angle, :mass, :grounded, :layer
+  attr_accessor :sprite, :angle, :mass, :grounded, :layer, :center_x, :center_y, :scale_x, :scale_y
   attr_reader :shape, :body
 
 
@@ -53,7 +53,12 @@ class Actor
   # implements a basic draw method for common Chipmunk managed actors
   # feel free to override if need to represent not physically simulated actors
   def draw
-    @sprite.draw_rot(@body.p.x , @body.p.y  , @layer, @shape.body.a)
+    scale_x = if @scale_x != nil then @scale_x else 1.0 end
+    scale_y = if @scale_y != nil then @scale_y else 1.0 end
+    center_x = if @center_x != nil then @center_x else 0.5 end
+    center_y = if @center_y != nil then @center_y else 0.5 end
+
+    @sprite.draw_rot(@body.p.x , @body.p.y  , @layer, @shape.body.a, center_x, center_y, scale_x, scale_y)
   end
 
   # determines if the body is mid air

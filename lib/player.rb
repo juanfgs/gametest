@@ -76,18 +76,24 @@ class Player < Actor
     @sprite = @sprite_right #sets default sprite
     @direction = :right 
     @current_frame, @atk_current_frame = 0, 0; #restarts running and attack frame counter
-    @body = CP::Body.new(10, CP::INFINITY)        
+    calculate_shape(:player,10,0.0,1, CP::INFINITY )
+  end
+
+
+  def calculate_shape(ct, mass, elasticity, friction, inertia)
+    @body = CP::Body.new(mass,inertia )        
     @layer = 2
     @shape = CP::Shape::Poly.new(@body,vec_arbitrary_size(42,60),CP::Vec2.new(0,0) ) #defines shape for collision detection
-    @shape.collision_type = :player
-    @shape.e = 0.0
-    @shape.u = 1
+    @shape.collision_type = ct
+    @shape.e = elasticity
+    @shape.u = friction
     @shape.surface_v  = CP::Vec2.new(1.0,1.0)
     @shape.object = self
     @body.object = self
     @body.w_limit = 0.5
 
   end
+  
 
   # accelerate
   # @params int direction
