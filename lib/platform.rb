@@ -23,14 +23,15 @@ class Platform < Actor
   end
 
   def draw
-     tiles = (@width / @sprite.width) / 2 
-     (-tiles..tiles).each do |i|
+    tiles = (@width / @sprite.width) / 2
+
+    (-tiles..tiles).each do |i|
        if i == -tiles
-         @sprite_start.draw_rot(@body.p.x + (@sprite.width  * i  ) + 32 ,@body.p.y + 24    , 1, @body.a)
+         @sprite_start.draw_rot(@body.p.x + (@sprite.width  * i  ) + (@sprite.width / 2) ,@body.p.y + 24    , 1, @body.a)
        elsif i > -tiles && i < tiles -1
-         @sprite.draw_rot(@body.p.x + (@sprite.width * i ) + 32  ,@body.p.y + 24, 1, @body.a)
+         @sprite.draw_rot(@body.p.x + (@sprite.width * i ) + (@sprite.width / 2)  ,@body.p.y + 24, 1, @body.a)
        elsif i == tiles -1
-         @sprite_end.draw_rot(@body.p.x + (@sprite.width * i ) + 32 ,@body.p.y + 24  , 1, @body.a)
+         @sprite_end.draw_rot(@body.p.x + (@sprite.width * i ) + (@sprite.width / 2) ,@body.p.y + 24  , 1, @body.a)
        end
      end
    end
