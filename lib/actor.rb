@@ -5,7 +5,7 @@ require 'chipmunk'
 # This class contains a handful of methods useful to render and calculate shapes for game actors
 
 class Actor
-  attr_accessor :sprite, :angle, :mass, :grounded, :layer, :center_x, :center_y, :scale_x, :scale_y
+  attr_accessor :sprite, :angle, :mass, :grounded, :layer, :center_x, :center_y, :scale_x, :scale_y, :platform
   attr_reader :shape, :body
 
 

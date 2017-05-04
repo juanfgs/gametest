@@ -87,6 +87,7 @@ class Player < Actor
     @shape.collision_type = ct
     @shape.e = elasticity
     @shape.u = friction
+    @shape.group = :player
     @shape.surface_v  = CP::Vec2.new(1.0,1.0)
     @shape.object = self
     @body.object = self
@@ -116,10 +117,11 @@ class Player < Actor
   # @params nil
   # makes the actor jump, 
   def jump
+    puts @grounded
     if @grounded
       @body.v.y = -20 * 0.95
-      @grounded = false
     end
+    @grounded = false
   end  
 
   # attack

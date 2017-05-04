@@ -2,7 +2,7 @@ require_relative "./actor.rb"
 require "chipmunk"
 
 class Platform < Actor
-  attr_accessor :height
+  attr_accessor :height,:width
   
   def initialize(width,angle = nil)
     @body = CP::Body.new_static()
